@@ -8,6 +8,8 @@ const measurement = {};
 app.use(bodyParser.json());
 const cors = require('cors'); 
 
+const event_bus_endpoint = process.env.EVENT_BUS_ENDPOINT;
+
 // will be invoked when a GET request is received
 const axios = require('axios');
 app.get('/values', (req,res)=>{
@@ -31,7 +33,7 @@ app.post('/values',  async(req, res) =>{
     console.log(measurement[id]);
     
     // send data to event bus
-    await axios.post('http://localhost:4005/events', {
+    await axios.post(event_bus_endpoint, {
         type: 'Measurement received',
         measurementdata: { 
             id,
@@ -43,5 +45,6 @@ app.post('/values',  async(req, res) =>{
 });
 
 app.listen(4000, () =>{
+    console.log(event_bus_endpoint)
     console.log('Listening on port 4000')
 })
