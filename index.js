@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const {randomBytes} = require('crypto');
-const measurement = {};
+const measurements = {};
 app.use(bodyParser.json());
 const cors = require('cors'); 
 
@@ -15,10 +15,10 @@ const axios = require('axios');
 app.get('/values', (req,res)=>{
   // 001hs - when a get request is received send all data back to the requester and print 
   // it to console.log just for test purpose
-  res.send(measurement);
+  res.send(measurements);
 });
 
-// will be invoked when a post request is received - it means a new measurement is received from a device
+// will be invoked when a post request is received - it means a new measurements is received from a device
 app.post('/values',  async(req, res) =>{
     // 001hs generate a unique id for each new post request
     const id = randomBytes(4).toString('hex');
@@ -27,10 +27,10 @@ app.post('/values',  async(req, res) =>{
     const { data } = req.body;
     const { devid} = req.body.data[0];
     // put the data into the data array with id as key
-    measurement[id] = {
+    measurements[id] = {
         id,data
     };
-    console.log(measurement[id]);
+    console.log(measurements[id]);
     
     // send data to event bus
     await axios.post(event_bus_endpoint, {
