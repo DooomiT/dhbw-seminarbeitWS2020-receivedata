@@ -8,6 +8,7 @@ const measurements = {};
 app.use(bodyParser.json());
 const cors = require('cors'); 
 
+// dynamic endpoints
 const event_bus_endpoint = process.env.EVENT_BUS_ENDPOINT;
 
 // will be invoked when a GET request is received
