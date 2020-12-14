@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\Program Files (x86)\kompose\kompose.exe convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: dhbw-seminarbeit-receivedata
+  name: dhbw-seminarbeit-receivedata
+spec:
+  ports:
+  - name: "4000"
+    port: 4000
+    targetPort: 4000
+  selector:
+    io.kompose.service: dhbw-seminarbeit-receivedata
+status:
+  loadBalancer: {}
