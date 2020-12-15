@@ -1,33 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: C:\Program Files (x86)\kompose\kompose.exe convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
   labels:
-    io.kompose.service: dhbw-seminarbeit-receivedata
+    app.kubernetes.io/name: dhbw-seminarbeit-receivedata
   name: dhbw-seminarbeit-receivedata
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: dhbw-seminarbeit-receivedata
+      app.kubernetes.io/name: dhbw-seminarbeit-receivedata
   strategy: {}
   template:
     metadata:
-      annotations:
-        kompose.cmd: C:\Program Files (x86)\kompose\kompose.exe convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.network/dhbw_sem: "true"
-        io.kompose.service: dhbw-seminarbeit-receivedata
+        app.kubernetes.io/name: dhbw-seminarbeit-receivedata
     spec:
       containers:
       - env:
         - name: EVENT_BUS_ENDPOINT
-          value: http://klausur_dhbw-seminarbeit-eventbus_1:4005/events
+          valueFrom:
+            configMapKeyRef:
+              key: EVENT_BUS_ENDPOINT
+              name: env
         image: dhbw-seminarbeit-receivedata
         imagePullPolicy: ""
         name: dhbw-seminarbeit-receivedata

@@ -9,7 +9,10 @@ app.use(bodyParser.json());
 const cors = require('cors'); 
 
 // dynamic endpoints
-const event_bus_endpoint = process.env.EVENT_BUS_ENDPOINT;
+var event_bus_endpoint = "http://localhost:4005";
+if(process.env.EVENT_BUS_ENDPOINT){
+    event_bus_endpoint = process.env.EVENT_BUS_ENDPOINT;
+}
 
 // will be invoked when a GET request is received
 const axios = require('axios');
