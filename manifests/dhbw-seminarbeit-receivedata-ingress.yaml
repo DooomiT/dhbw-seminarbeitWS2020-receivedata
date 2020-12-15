@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dhbw-seminarbeit-receivedata-ingress
+spec:
+  rules:
+  - host: receive.co2ampel.example.com
+    http:
+      paths:
+      - path: /values
+        pathType: Prefix
+        backend:
+          service:
+            name: dhbw-seminarbeit-receivedata 
+            port:
+              number: 4000
