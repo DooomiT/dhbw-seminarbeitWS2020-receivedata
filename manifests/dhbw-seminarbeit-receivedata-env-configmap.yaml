@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: dhbw-seminararbeit-receivedata-env
+  name: dhbw-seminararbeit-receivedata-env
+data:
+  EVENT_BUS_ENDPOINT: "http://localhost:4005"
