@@ -4,7 +4,7 @@ metadata:
   name: dhbw-seminarbeit-receivedata-ingress
 spec:
   rules:
-  - host: receive.co2ampel.example.com
+  - host: receive.co2ampel.example.internal
     http:
       paths:
       - path: /values

@@ -11,7 +11,8 @@ const cors = require('cors');
 // dynamic endpoints
 var event_bus_endpoint = "http://localhost:4005";
 if(process.env.EVENT_BUS_ENDPOINT){
-    event_bus_endpoint = process.env.EVENT_BUS_ENDPOINT;
+    event_bus_endpoint = "http://"
+    event_bus_endpoint += process.env.EVENT_BUS_ENDPOINT;
 }
 
 // will be invoked when a GET request is received
