@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: dhbw-seminarbeit-receivedata-ingress
@@ -10,7 +10,5 @@ spec:
       - path: /values
         pathType: Exact
         backend:
-          service:
-            name: dhbw-seminarbeit-receivedata 
-            port:
-              number: 4000
+          serviceName: dhbw-seminarbeit-receivedata 
+          servicePort: 4000
